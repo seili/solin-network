@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Patient{% endblock %}
+
+{% block body %}
+<div class="row">
+ <div class="col-6 offset-1">
+    <h1>{{ patient.nom }}</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                    <td>{{ patient.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                    <td>{{ patient.prenom }}</td>
+            </tr>
+            <tr>
+                <th>genre</th>
+                    <td>{{ patient.gender }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                    <td>{{ patient.naissance|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                    <td>{{ patient.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-dark" href="{{ path('app_patient_display') }}" role="button">Back</a>
+    <div class="row float-right">
+        <a class="btn btn-primary" href="{{ path('app_patient_edit', {'id': patient.id}) }}" role="button">edit</a>
+        <td>&nbsp;</td>
+        {{ include('patient/_delete_patient.html.twig') }}
+    </div>
+ </div>
+</div>
+{% endblock %}

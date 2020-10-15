@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit patient{% endblock %}
+
+{% block body %}
+<div class="row">
+ <div class="col-6 offset-1">
+    <h1>Edit Patient</h1>
+
+    {{ include('patient/_form_patient.html.twig', {'button_label': 'Update'}, { 'attr': {'class': 'btn btn-primary float-right', 'type': 'button'} }) }}
+    <div class="row float-right">
+        {{ include('patient/_delete_patient.html.twig') }}
+    </div>
+ </div>
+</div>
+{% endblock %}

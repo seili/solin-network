@@ -2,8 +2,8 @@
 {% block title %}Crée votre nouveau patient{% endblock %}
 {% block body %}
    <div class="row">
-       <div class="col-8 offset-2">
-           {{ form(patientForm) }}
+        <div class="col-8 offset-2">
+            {{ include('patient/_form_patient.html.twig') }}
        </div>
    </div>
 {% endblock %}

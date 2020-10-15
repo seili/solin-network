@@ -27,9 +27,6 @@ class PatientType extends AbstractType
             ])
             ->add('email', EmailType::class)
             ->add('phone', TelType::class)
-            ->add('submit', SubmitType::class, [
-                'label' => "Ajouter patient !"
-            ]) 
         ;
     }
 
