@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+{% block title %}Crée un evenement{% endblock %}
+{% block body %}
+   <div class="row">
+    <div class="col-6 offset-3">
+        <div>
+            {{ form_start(calendarForm) }}
+            {{ form_errors(calendarForm) }}
+            <div>
+                {{ form_label(calendarForm.title, "Titre") }}
+                {{ form_errors(calendarForm.title) }}
+                <div>
+                    {{ form_widget(calendarForm.title) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.start, "Date/heure de début") }}
+                {{ form_errors(calendarForm.start) }}
+                <div>
+                    {{ form_widget(calendarForm.start) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.fin, "Date/heure de fin") }}
+                {{ form_errors(calendarForm.fin) }}
+                <div>
+                    {{ form_widget(calendarForm.fin) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.description, "Description") }}
+                {{ form_errors(calendarForm.description) }}
+                <div>
+                    {{ form_widget(calendarForm.description) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.all_day, "Toute la journée") }}
+                {{ form_errors(calendarForm.all_day) }}
+                <div>
+                    {{ form_widget(calendarForm.all_day) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.background_color, "Couleur de fond") }}
+                {{ form_errors(calendarForm.background_color) }}
+                <div>
+                    {{ form_widget(calendarForm.background_color) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.border_color, "Couleur de bordure") }}
+                {{ form_errors(calendarForm.border_color) }}
+                <div>
+                    {{ form_widget(calendarForm.border_color) }}
+                </div>
+            </div>
+            <div>
+                {{ form_label(calendarForm.text_color, "Couleur du text") }}
+                {{ form_errors(calendarForm.text_color) }}
+                <div>
+                    {{ form_widget(calendarForm.text_color) }}
+                </div>
+            </div>
+            <div>
+                {{ form_rest(calendarForm) }}
+            </div>
+            {{ form_end(calendarForm) }}
+        </div>
+    </div>
+   </div>
+{% endblock %}

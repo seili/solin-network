@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-10 offset-1">
+        <h3 class="text-center"> List des patients</h3>
+            <div class="container">
+                <table class="table table-condensed"  id="myTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>genre</th>
+                        <th>Date de naissance</th>
+                        <th>Téléphone</th>
+                    </tr>
+                </thead>
+            {% for patient in patients %}
+                <tbody class="panel">
+                    <tr data-toggle="collapse" data-target="#demo{{ patient.id }}" data-parent="#myTable">
+                        <td>{{ patient.id }}</td>
+                        <td>{{ patient.nom }}</td>
+                        <td>{{ patient.prenom }}</td>
+                        <td>{{ patient.gender }}</td>
+                        <td>{{ patient.naissance|date("d/m/Y") }}</td>
+                        <td>{{ patient.phone }}</td>
+                    </tr>
+                    <tr id="demo{{ patient.id }}" class="collapse">
+                        <td colspan="6" class="hiddenRow">
+                            <div class="card-body">Plus de détails concernant {{ patient.nom }}</div>
+                            </td>
+                    </tr>
+                </tbody>
+            {% else %}
+                <div class="text-center alert alert-primary">Pas de patients !</div>
+            {% endfor %}
+            </table>
+                        {#<div class="card-footer text-muted small">
+                            {{ patients.created|date("m/d/Y h:i a") }} 
+                        </div>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
