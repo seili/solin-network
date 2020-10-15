@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Felicitation {% endblock %}
+
+{% block body %}
+   <h3 class="text-center"> Vous avez ajouté {{ patient.nom }}</h3>
+    <li>
+        <a href="{{ path('homepage') }}">Afficher le tableau des patients</a> 
+    </li>
+{% endblock %}
