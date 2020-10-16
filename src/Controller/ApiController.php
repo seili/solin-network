@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Calendar;
+use App\Entity\Patient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ class ApiController extends AbstractController
    /**
      * @Route("/api/{id}/edit", name="api_event_edit", methods={"PUT"})
      */
-    public function majEvent(?Calendar $calendar, Request $request)
+    public function majEvent(?Patient $patient, Request $request)
     {
         // On récupère les données
         $donnees = json_decode($request->getContent());
@@ -32,40 +32,33 @@ class ApiController extends AbstractController
         if(
             isset($donnees->title) && !empty($donnees->title) &&
             isset($donnees->start) && !empty($donnees->start) &&
-            isset($donnees->description) && !empty($donnees->description) &&
-            isset($donnees->backgroundColor) && !empty($donnees->backgroundColor) &&
-            isset($donnees->borderColor) && !empty($donnees->borderColor) &&
-            isset($donnees->textColor) && !empty($donnees->textColor)
+            isset($donnees->backgroundColor) && !empty($donnees->backgroundColor)
         ){
             // Les données sont complètes
             // On initialise un code
             $code = 200;
 
             // On vérifie si l'id existe
-            if(!$calendar){
+            if(!$patient){
                 // On instancie un rendez-vous
-                $calendar = new Calendar;
+                $patient = new Patient;
 
                 // On change le code
                 $code = 201;
             }
 
             // On hydrate l'objet avec les données
-            $calendar->setTitle($donnees->title);
-            $calendar->setDescription($donnees->description);
-            $calendar->setStart(new DateTime($donnees->start));
-            if($donnees->allDay){
-                $calendar->setFin(new DateTime($donnees->start));
+            $patient->setDatedebut(new DateTime($donnees->start));
+            $patient->setDatefin(new DateTime($donnees->fin));
+            /* if($donnees->allDay){
+                $patient->setDatefin(new DateTime($donnees->start));
             }else{
-                $calendar->setFin(new DateTime($donnees->fin));
-            }
-            $calendar->setAllDay($donnees->allDay);
-            $calendar->setBackgroundColor($donnees->backgroundColor);
-            $calendar->setBorderColor($donnees->borderColor);
-            $calendar->setTextColor($donnees->textColor);
+                $patient->setDatefin(new DateTime($donnees->fin));
+            }*/
+            $patient->setBackgroundColor($donnees->backgroundColor);
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($calendar);
+            $entityManager->persist($patient);
             $entityManager->flush();
 
             // On retourne le code

@@ -45,17 +45,17 @@ class User implements UserInterface
     private $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="relation", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Question::class, mappedBy="user", orphanRemoval=true)
      */
     private $questions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="relation", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="user", orphanRemoval=true)
      */
     private $answers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Patient::class, mappedBy="users", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Patient::class, mappedBy="user", orphanRemoval=true)
      */
     private $patients;
 

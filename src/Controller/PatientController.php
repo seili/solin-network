@@ -101,4 +101,28 @@ public function displayPatients(PatientRepository $patientRepository){
         return $this->redirectToRoute('app_patient_display');
     }
 
+    /**
+     * @Route("/patient/display/calendar", name="app_patient_calendar", methods={"GET"})
+     */
+    public function calendar(PatientRepository $patientRepository)
+    {
+        $events = $patientRepository->findAll();
+        //dd($events);
+        $taches = [];
+
+        foreach($events as $event){
+            $taches[] = [
+                'id' => $event->getId(),
+                'title' => $event->getNom(),
+                'start' => $event->getDatedebut()->format('Y-m-d H:i:s'),
+                'end' => $event->getDatefin()->format('Y-m-d H:i:s'),
+                'backgroundColor' => $event->getBackgroundColor(),
+            ];
+        }
+
+        $data = json_encode($taches);
+        //dd($data);
+        return $this->render('patient/calendar_patient.html.twig', compact('data'));
+    }
+
 }

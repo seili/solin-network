@@ -58,6 +58,21 @@ class Patient
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datedebut;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datefin;
+
+    /**
+     * @ORM\Column(type="string", length=7)
+     */
+    private $background_color;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -155,6 +170,42 @@ class Patient
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDatedebut(): ?\DateTimeInterface
+    {
+        return $this->datedebut;
+    }
+
+    public function setDatedebut(\DateTimeInterface $datedebut): self
+    {
+        $this->datedebut = $datedebut;
+
+        return $this;
+    }
+
+    public function getDatefin(): ?\DateTimeInterface
+    {
+        return $this->datefin;
+    }
+
+    public function setDatefin(\DateTimeInterface $datefin): self
+    {
+        $this->datefin = $datefin;
+
+        return $this;
+    }
+
+    public function getBackgroundColor(): ?string
+    {
+        return $this->background_color;
+    }
+
+    public function setBackgroundColor(string $background_color): self
+    {
+        $this->background_color = $background_color;
 
         return $this;
     }

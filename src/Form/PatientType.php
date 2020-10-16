@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PatientType extends AbstractType
 {
@@ -27,6 +29,13 @@ class PatientType extends AbstractType
             ])
             ->add('email', EmailType::class)
             ->add('phone', TelType::class)
+            ->add('datedebut', DateTimeType::class, [
+                'date_widget' => 'single_text',
+            ])
+            ->add('datefin', DateTimeType::class, [
+                'date_widget' => 'single_text',
+            ])
+            ->add('background_color', ColorType::class)
         ;
     }
 
