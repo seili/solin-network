@@ -29,24 +29,41 @@
             },
             events: {{ data|raw }},
             editable: true,
+            selectable: true,
             eventResizableFromStart: true
         })
+            calendar.on('eventClick',(e) => {
+
+                var check_color = e.el.style.backgroundColor
+                if (check_color == "green") {
+                    e.el.style.backgroundColor = "red"
+                } else {
+                    e.el.style.backgroundColor = "green"
+                }
+
+                calendar.save(e,e.el.style.backgroundColor);
+            })
+
         calendar.on('eventChange', (e) =>{
-            
+            calendar.save(e, e.event.backgroundColor);
+        })
+
+        $(function(){
+            calendar.save= function save(e, color) {
             let url = `/api/${e.event.id}/edit`
             let datafinal = {
                 "title": e.event.title,
                 "start": e.event.start,
                 "fin": e.event.end,
-                "backgroundColor": e.event.backgroundColor
+                "backgroundColor": color
             }
 
             let xhr = new XMLHttpRequest
             xhr.open("PUT", url)
             xhr.send(JSON.stringify(datafinal))
+            }
+            calendar.render();
         })
-
-        calendar.render()
     } 
 </script>
 
