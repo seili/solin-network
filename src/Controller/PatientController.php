@@ -58,7 +58,7 @@ public function displayPatients(PatientRepository $patientRepository){
 }
 
     /**
-     * @Route("/{id}", name="app_patient_show", methods={"GET"})
+     * @Route("/{id}/show", name="app_patient_show", methods={"GET"})
      */
     public function show(Patient $patient): Response
     {

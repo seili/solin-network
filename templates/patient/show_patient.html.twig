@@ -28,6 +28,14 @@
                 <th>Téléphone</th>
                     <td>{{ patient.phone }}</td>
             </tr>
+            <tr>
+                <th>Date debut</th>
+                    <td>{{ patient.datedebut|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+                <th>Date fin</th>
+                    <td>{{ patient.datefin|date("d/m/Y") }}</td>
+            </tr>
         </tbody>
     </table>
     <a class="btn btn-dark" href="{{ path('app_patient_display') }}" role="button">Back</a>
