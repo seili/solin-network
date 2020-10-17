@@ -73,6 +73,11 @@ class Patient
      */
     private $background_color;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $body;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -206,6 +211,18 @@ class Patient
     public function setBackgroundColor(string $background_color): self
     {
         $this->background_color = $background_color;
+
+        return $this;
+    }
+
+    public function getBody(): ?string
+    {
+        return $this->body;
+    }
+
+    public function setBody(?string $body): self
+    {
+        $this->body = $body;
 
         return $this;
     }

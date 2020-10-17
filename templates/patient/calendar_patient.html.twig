@@ -29,24 +29,47 @@
             },
             events: {{ data|raw }},
             editable: true,
+            selectable: true,
             eventResizableFromStart: true
         })
+            calendar.on('eventClick',(e) => {
+            function rgb2hex(orig){
+                var rgb = orig.replace(/\s/g,'').match(/^rgba?\((\d+),(\d+),(\d+)/i);
+                return (rgb && rgb.length === 4) ? "#" +
+                ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+                ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+                ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : orig;
+            }
+                var check_color = rgb2hex(e.el.style.backgroundColor)
+                if (check_color == "#0fdb1a") {
+                    e.el.style.backgroundColor = "#eb4034"
+                } else {
+                    e.el.style.backgroundColor = "#0fdb1a"
+                }
+
+                calendar.save(e,rgb2hex(e.el.style.backgroundColor));
+            })
+
         calendar.on('eventChange', (e) =>{
-            
+            calendar.save(e, rgb2hex(e.event.backgroundColor));
+        })
+
+        $(function(){
+            calendar.save= function save(e, color) {
             let url = `/api/${e.event.id}/edit`
             let datafinal = {
                 "title": e.event.title,
                 "start": e.event.start,
                 "fin": e.event.end,
-                "backgroundColor": e.event.backgroundColor
+                "backgroundColor": color
             }
 
             let xhr = new XMLHttpRequest
             xhr.open("PUT", url)
             xhr.send(JSON.stringify(datafinal))
+            }
+            calendar.render();
         })
-
-        calendar.render()
     } 
 </script>
 

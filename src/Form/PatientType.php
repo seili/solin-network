@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PatientType extends AbstractType
 {
@@ -36,6 +37,13 @@ class PatientType extends AbstractType
                 'date_widget' => 'single_text',
             ])
             ->add('background_color', ColorType::class)
+            ->add('body', TextareaType::class, [
+                'required' => false,
+                'attr' => [
+                    'rows' => 5
+                ],
+                'label' => 'Body (Optional)'
+            ])
         ;
     }
 
