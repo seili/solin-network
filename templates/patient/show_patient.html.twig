@@ -10,31 +10,19 @@
         <tbody>
             <tr>
                 <th>Nom</th>
-                    <td>{{ patient.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                    <td>{{ patient.prenom }}</td>
-            </tr>
-            <tr>
-                <th>genre</th>
-                    <td>{{ patient.gender }}</td>
-            </tr>
-            <tr>
-                <th>Date de naissance</th>
-                    <td>{{ patient.naissance|date("d/m/Y") }}</td>
+                    <td>{{ patient.gender }}.{{ patient.nom }} {{ patient.prenom }}</td>
             </tr>
             <tr>
                 <th>Téléphone</th>
-                    <td>{{ patient.phone }}</td>
+                <td>{{ patient.phone }}</td>
             </tr>
             <tr>
-                <th>Date debut</th>
-                    <td>{{ patient.datedebut|date("d/m/Y") }}</td>
+                <th>Date de passage</th>
+                    <td>{{ patient.datedebut|date("d/m/Y H:i:s") }} à {{ patient.datefin|date("H:i:s") }}</td>
             </tr>
             <tr>
-                <th>Date fin</th>
-                    <td>{{ patient.datefin|date("d/m/Y") }}</td>
+                <th>Description</th>
+                    <td>{{ patient.body }}</td>
             </tr>
         </tbody>
     </table>
